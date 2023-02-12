@@ -43,7 +43,7 @@ const Register = () => {
 
    //redirect
    if (registered) {
-    return <Navigate to='/profile' />
+    return <Navigate to='/login' />
    }
 
   return (
@@ -131,13 +131,6 @@ const Register = () => {
                   </div>
 
                   <div className="inline-flex mb-10"></div>
-
-                  {/* <button
-                    type="submit"
-                    className="py-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition duration-200"
-                  >
-                    Register
-                  </button> */}
 
                   {/* Check for Loading */}
                   {loading ? (
