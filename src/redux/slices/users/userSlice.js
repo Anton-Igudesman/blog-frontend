@@ -52,7 +52,7 @@ export const logoutUserAction = createAsyncThunk('/user/logout',
 async (payload, {rejectWithValue, getState, dispatch}) => {
     try {
         localStorage.removeItem('userInfo');
-        <Navigate to='/login' /> 
+        window.location = '/'
     } catch (error) {
         if (!error.response) {
             throw error;
