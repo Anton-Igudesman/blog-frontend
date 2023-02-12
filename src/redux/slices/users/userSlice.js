@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { baseUrl, baseFrontendUrl } from '../../../utilities/baseUrl';
+import { baseUrl } from '../../../utilities/baseUrl';
 import { Navigate } from 'react-router-dom';
 
 //register action
