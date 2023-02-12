@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { baseUrl } from '../../../utilities/baseUrl';
+import { baseUrl, baseFrontendUrl } from '../../../utilities/baseUrl';
 
 //register action
 
@@ -32,7 +32,7 @@ async (user, { rejectWithValue, getState, dispatch }) => {
     };
     try {
         //http request
-        const { data } = await axios.post(`${baseUrl}/api/v1/users/login`, user, config);
+        const { data } = await axios.post(`${baseFrontendUrl}/api/v1/users/login`, user, config);
         
         //save user into local storage (has token info)
         localStorage.setItem('userInfo', JSON.stringify(data));
