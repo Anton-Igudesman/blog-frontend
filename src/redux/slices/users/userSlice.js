@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { baseUrl, baseFrontendUrl } from '../../../utilities/baseUrl';
+import { Navigate } from 'react-router-dom';
 
 //register action
 
@@ -51,7 +52,7 @@ export const logoutUserAction = createAsyncThunk('/user/logout',
 async (payload, {rejectWithValue, getState, dispatch}) => {
     try {
         localStorage.removeItem('userInfo');
-        window.location = `${baseFrontendUrl}/login`;
+        <Navigate to='/login' /> 
     } catch (error) {
         if (!error.response) {
             throw error;
