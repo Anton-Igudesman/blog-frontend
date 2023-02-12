@@ -32,7 +32,7 @@ async (user, { rejectWithValue, getState, dispatch }) => {
     };
     try {
         //http request
-        const { data } = await axios.post(`${baseFrontendUrl}/api/v1/users/login`, user, config);
+        const { data } = await axios.post(`${baseUrl}/api/v1/users/login`, user, config);
         
         //save user into local storage (has token info)
         localStorage.setItem('userInfo', JSON.stringify(data));
@@ -51,7 +51,7 @@ export const logoutUserAction = createAsyncThunk('/user/logout',
 async (payload, {rejectWithValue, getState, dispatch}) => {
     try {
         localStorage.removeItem('userInfo');
-        window.location = `${baseUrl}/login`;
+        window.location = `${baseFrontendUrl}/login`;
     } catch (error) {
         if (!error.response) {
             throw error;
