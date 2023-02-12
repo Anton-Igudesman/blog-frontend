@@ -1,1 +1,1 @@
-export const baseUrl = 'https://blog-backend-s0f7.onrender.com/';
+export const baseUrl = 'https://blog-backend-s0f7.onrender.com';
