@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<HomePage />} />
         <Route path="/register" element = {<Register />} />
-        <Route path="/login" element = {<Login />} />
+        <Route path="https://blog-backend-s0f7.onrender.com/api/v1/users/login" element = {<Login />} />
         <Route path="*" element = {<h1>404. Page Not Found</h1>} />
       </Routes>
     </BrowserRouter>
