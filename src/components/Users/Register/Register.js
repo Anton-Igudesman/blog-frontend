@@ -1,5 +1,5 @@
 import React from "react";
-import { useFormik} from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from "react-redux";
 import { registerUserAction } from "../../../redux/slices/users/userSlice";
