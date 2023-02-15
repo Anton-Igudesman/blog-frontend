@@ -28,7 +28,7 @@ const AddNewCategory = () => {
   });
 
   const store = useSelector(state => state?.category);
-  const { loading, appError, serverError, category } = store;
+  const { loading, appError, serverError } = store;
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
