@@ -52,6 +52,75 @@ export const createCategoryAction = createAsyncThunk('category/create',
         }
     });
 
+    export const updateCategoryAction = createAsyncThunk('category/update', 
+    async (id, {rejectWithValue, getState, dispatch}) => {
+        
+        //http call
+        try {
+            
+            const userData = JSON.parse(localStorage.getItem('userInfo'));
+            const { token } = userData?.data
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            const { data } = await axios.put(`${baseUrl}/api/v1/categories/${id}`, config);
+            return data;
+        } catch (error) {
+            if (!error?.response) {
+                throw error;
+            }
+            return rejectWithValue(error?.response?.data);
+        }
+    });
+
+    export const deleteCategoryAction = createAsyncThunk('category/delete', 
+    async (id, {rejectWithValue, getState, dispatch}) => {
+        
+        //http call
+        try {
+            
+            const userData = JSON.parse(localStorage.getItem('userInfo'));
+            const { token } = userData?.data
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            const { data } = await axios.delete(`${baseUrl}/api/v1/categories/${id}`, config);
+            return data;
+        } catch (error) {
+            if (!error?.response) {
+                throw error;
+            }
+            return rejectWithValue(error?.response?.data);
+        }
+    });
+
+    export const getCategoryDetailAction = createAsyncThunk('category/details', 
+    async (id, {rejectWithValue, getState, dispatch}) => {
+        
+        //http call
+        try {
+            
+            const userData = JSON.parse(localStorage.getItem('userInfo'));
+            const { token } = userData?.data
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            };
+            const { data } = await axios.get(`${baseUrl}/api/v1/categories/${id}`, config);
+            return data;
+        } catch (error) {
+            if (!error?.response) {
+                throw error;
+            }
+            return rejectWithValue(error?.response?.data);
+        }
+    });
+
 //slice
 
 const categorySlices = createSlice({
@@ -93,7 +162,64 @@ const categorySlices = createSlice({
             state.loading = false;
             state.appError = action?.payload?.message;
             state.serverError = action?.error?.message;
-        })
+        });
+
+        //edit category
+
+        builder.addCase(updateCategoryAction.pending, (state, action) => {
+            state.loading = true;
+        });
+
+        builder.addCase(updateCategoryAction.fulfilled, (state, action) => {
+            state.updatedCategory = action?.payload;
+            state.loading = false;
+            state.appError = undefined;
+            state.serverError = undefined;
+        });
+
+        builder.addCase(updateCategoryAction.rejected, (state, action) => {
+            state.loading = false;
+            state.appError = action?.payload?.message;
+            state.serverError = action?.error?.message;
+        });
+
+        //delete category
+
+        builder.addCase(deleteCategoryAction.pending, (state, action) => {
+            state.loading = true;
+        });
+
+        builder.addCase(deleteCategoryAction.fulfilled, (state, action) => {
+            state.deletedCategory = action?.payload;
+            state.loading = false;
+            state.appError = undefined;
+            state.serverError = undefined;
+        });
+
+        builder.addCase(deleteCategoryAction.rejected, (state, action) => {
+            state.loading = false;
+            state.appError = action?.payload?.message;
+            state.serverError = action?.error?.message;
+        });
+
+        //get category detail
+
+        builder.addCase(getCategoryDetailAction.pending, (state, action) => {
+            state.loading = true;
+        });
+
+        builder.addCase(getCategoryDetailAction.fulfilled, (state, action) => {
+            state.selectedCategory = action?.payload;
+            state.loading = false;
+            state.appError = undefined;
+            state.serverError = undefined;
+        });
+
+        builder.addCase(getCategoryDetailAction.rejected, (state, action) => {
+            state.loading = false;
+            state.appError = action?.payload?.message;
+            state.serverError = action?.error?.message;
+        });
     }
 });
 

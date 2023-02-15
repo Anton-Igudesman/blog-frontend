@@ -6,6 +6,7 @@ import Register from './components/Users/Register/Register';
 import Login from './components/Users/Login/Login';
 import Navbar from './components/Navigation/Navbar';
 import AddNewCategory from './components/Categories/AddNewCategory';
+import UpdateCategory from './components/Categories/UpdateCategory';
 import CategoryList from './components/Categories/CategoryList';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element = {<HomePage />} />
         <Route path="/add-category" element = {<AddNewCategory />} />
+        <Route path="/category/details/:id" element = {<UpdateCategory />}/>
         <Route path="category-list" element = {<CategoryList />} />
         <Route path="/register" element = {<Register />} />
         <Route path="/login" element = {<Login />} />

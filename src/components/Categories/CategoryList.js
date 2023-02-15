@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-
+import DateFormatter from "../../utilities/dateFormatter";
+import LoadingComponent from "../../utilities/LoadingComponent";
 import { PencilAltIcon } from "@heroicons/react/outline";
 import { fetchCategoryAction } from "../../redux/slices/categories/categorySlice";
 
@@ -29,8 +30,8 @@ const CategoryList = () => {
         </div>
         <div className="ml-4">
           <div className="text-sm font-medium text-gray-900">
-            {category?.user?.firstName}{" "}
-            {category?.user?.lastName}
+            {category?.user?.firstname}{" "}
+            {category?.user?.lastname}
           </div>
           <div className="text-sm text-gray-500">
             {category?.user?.email}
@@ -42,7 +43,7 @@ const CategoryList = () => {
       {category.title}
     </td>
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-      {category?.createdAt}
+      {<DateFormatter date={category?.createdAt}/>}
     </td>
     <Link>
       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -51,13 +52,11 @@ const CategoryList = () => {
     </Link>
   </tr>
 ))
-console.log(categoryList)
   return (
     <>
 
-      {loading ? (
-        <h2 className="text-center text-3xl text-green-800">Loading</h2>
-      ) : appError || serverError ? (
+      {loading ? <LoadingComponent /> : 
+      appError || serverError ? (
         <h2 className="text-center text-3xl text-red-600">
           {appError}
         </h2>
@@ -89,7 +88,7 @@ console.log(categoryList)
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        Created At
+                        Created On
                       </th>
                       <th
                         scope="col"

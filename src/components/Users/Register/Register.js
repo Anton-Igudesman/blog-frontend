@@ -38,8 +38,6 @@ const Register = () => {
     //select state from store
     const storeData = useSelector(store => store?.users);
     const { loading, appError, serverError, registered} = storeData;
-   console.log(registered)
-   console.log(loading)
 
    //redirect
    if (registered) {
