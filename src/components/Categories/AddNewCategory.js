@@ -1,6 +1,7 @@
 import { PlusCircleIcon, BookOpenIcon } from "@heroicons/react/solid";
 import { useDispatch, useSelector } from "react-redux";
 import { createCategoryAction } from "../../redux/slices/categories/categorySlice";
+import { Navigate } from "react-router-dom";
 import { useFormik } from "formik";
 import  * as Yup  from 'yup';
 
@@ -27,8 +28,12 @@ const AddNewCategory = () => {
     validationSchema: formSchema,
   });
 
-  const store = useSelector(state => state?.category);
-  const { loading, appError, serverError } = store;
+  const state = useSelector(state => state?.category);
+  const user = useSelector(state => state?.users);
+  const  isAdmin  = user?.userAuth?.data?.isAdmin;
+  const { loading, appError, serverError, isCreated } = state;
+  if (!isAdmin) return <h1 className='text-red-600'>You are not authorized</h1>
+  if (isCreated) return <Navigate to="/category-list" />
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">

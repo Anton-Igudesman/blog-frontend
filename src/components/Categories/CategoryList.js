@@ -14,11 +14,14 @@ const CategoryList = () => {
   }, [dispatch]);
   
   const category = useSelector(state => state?.category);
+  const user = useSelector(state => state?.users);
+  const  isAdmin  = user?.userAuth?.data?.isAdmin;
+  console.log(isAdmin)
 
   const { categoryList, loading, appError, serverError } = category;
 
   const table = categoryList?.data?.map(category => (
-  <tr className="bg-gray-50">
+  <tr key={category?._id} className="bg-gray-50">
     <td className="px-6 py-4 whitespace-nowrap">
       <div className="flex items-center">
         <div className="flex-shrink-0 h-10 w-10">
@@ -45,13 +48,16 @@ const CategoryList = () => {
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {<DateFormatter date={category?.createdAt}/>}
     </td>
-    <Link>
-      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+      <Link to={`/category/update/${category?._id}`}>
+        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
         <PencilAltIcon className="h-5 text-indigo-500" />
       </td>
     </Link>
+    
   </tr>
 ))
+
+if (!isAdmin) return <h1 className='text-red-600'>You are not authorized</h1>
   return (
     <>
 
