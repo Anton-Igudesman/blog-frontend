@@ -130,7 +130,7 @@ export default function CreatePost() {
                   htmlFor="description"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Description
+                  Post Content
                 </label>
                 {/* Description */}
                 <textarea

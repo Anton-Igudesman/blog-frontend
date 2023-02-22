@@ -11,6 +11,8 @@ import ProtectAdminRoute from './components/Navigation/ProtectedRoutes/ProtectAd
 import ProtectPrivateRoute from './components/Navigation/ProtectedRoutes/ProtectPrivateRoute';
 import CreatePost from './components/Posts/CreatePost';
 import PostsList from './components/Posts/PostsList';
+import PostDetails from './components/Posts/PostDetails';
+import UpdatePost from './components/Posts/UpdatePost';
 
 
 function App() {
@@ -53,9 +55,18 @@ function App() {
             </ProtectPrivateRoute>
           }
         />
+        <Route 
+          path="/update-post/:id"
+          element = {
+            <ProtectPrivateRoute>
+              <UpdatePost />
+            </ProtectPrivateRoute>
+          }
+        />
         <Route path="/register" element = {<Register />} />
         <Route path="/login" element = {<Login />} />
         <Route path='/posts' element = {<PostsList />} />
+        <Route exact path='/posts/:id' element = {<PostDetails/>} />
         <Route path="*" element = {<h1>404. Page Not Found</h1>} />
       </Routes>
     </BrowserRouter>
